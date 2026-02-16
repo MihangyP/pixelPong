@@ -9,6 +9,9 @@ if (ctx == null) {
 	throw new Error("Cannot support 2d platform");
 }
 const bgMenu = document.getElementById("bgMenu") as HTMLImageElement | null;
+if (bgMenu == null) {
+	throw new Error("No element with the id 'bgMenu'");
+}
 
 pong.width = window.innerWidth;
 pong.height = window.innerHeight;
@@ -30,9 +33,9 @@ bo.loop = true;
 bo.volume = 0.3;
 
 // for bot
-const botSpeed = 260;          // plus petit que playerVelocity
-const botPrecision = 25;       // erreur humaine (pixels)
-const botReaction = 0.15;      // temps de réaction (sec)
+const botSpeed = 200;          // plus petit que playerVelocity
+const botPrecision = 50;       // erreur humaine (pixels)
+const botReaction = 1;      // temps de réaction (sec)
 let botThinkTimer = 0;
 let botTargetY = windowHeight / 2;
 
