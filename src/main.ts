@@ -138,6 +138,9 @@ function drawMenu(ctx: CanvasRenderingContext2D) {
 	let itemPosY = TITLE_PADDING_TOP + TITLE_PADDING_BOTTOM;
 	menuItems.forEach((item, i) => {
 		if (i === menuItemFocus) {
+			drawTextCenterX(ctx, {
+				x: (windowWidth / 2) - 300, y: (itemPosY + i * ITEM_GAP) - 10
+			}, menuFont, 69, "→", "#339989", true);
 			drawTextCenterX(ctx, {x: windowWidth / 2, y: itemPosY + i * ITEM_GAP}, menuFont, 69, item, "#339989", true);
 		} else {
 			drawTextCenterX(ctx, {x: windowWidth / 2, y: itemPosY + i * ITEM_GAP}, menuFont, 69, item, myWhite);
