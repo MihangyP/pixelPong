@@ -1,11 +1,6 @@
 @font-face {
-	font-family: 'SuperPixel';
-	src: url('SuperPixel.ttf');
-}
-
-@font-face {
 	font-family: 'Orbitron';
-	src: url('Orbitron.ttf');
+	src: url('../resources/Orbitron.ttf');
 }
 
 html, body {

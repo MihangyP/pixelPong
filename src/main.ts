@@ -1,3 +1,6 @@
+import type {Vector2} from './shapes.js';
+import {drawRectangle, drawCircle, drawLine} from './shapes.js';
+
 let windowWidth: number;
 let windowHeight: number;
 const pong = document.getElementById("pong") as HTMLCanvasElement | null;
@@ -20,14 +23,14 @@ windowWidth = ctx.canvas.width;
 windowHeight = ctx.canvas.height;
 
 enum PongScreen {
-	Menu,
-	Game,
-	Auth,
+	Menu = 'MENU',
+	Game = 'GAME',
+	Auth = 'AUTH',
 }
 
 let currentScreen: PongScreen = PongScreen.Menu;
 
-const bo = new Audio("./bo.mp3");
+const bo = new Audio("../resources/bo.mp3");
 bo.preload = "auto";
 bo.loop = true;
 bo.volume = 0.3;
@@ -56,10 +59,10 @@ let playerMoveLeft = false;
 const playerVelocity = 300;
 let paused = false;
 
-interface Vector2 {
-	x: number,
-	y: number,
-}
+//interface Vector2 {
+//x: number,
+//y: number,
+//}
 
 let ballPos = {
 	x: windowWidth / 2,
@@ -306,32 +309,6 @@ window.addEventListener("keyup", (e) => {
 		} break;
 	}
 })
-
-function drawRectangle(ctx: CanvasRenderingContext2D, pos: Vector2, width: number, height: number, color: string) {
-	ctx.beginPath();
-	ctx.fillStyle = color;
-	ctx.rect(pos.x, pos.y, width, height);
-	ctx.fill();
-}
-
-function drawCircle(ctx: CanvasRenderingContext2D, pos: Vector2, radius: number, color: string) {
-	ctx.beginPath();
-	ctx.fillStyle = color;
-	ctx.shadowBlur = 15;
-	ctx.shadowColor = "#FFB703"; // TODO: make dynamic
-	ctx.arc(pos.x, pos.y, radius, 0, 2 * Math.PI);
-	ctx.fill();
-	ctx.shadowBlur = 0;
-}
-
-function drawLine(ctx: CanvasRenderingContext2D, startPos: Vector2, endPos: Vector2, color: string) {
-	ctx.beginPath();
-	ctx.strokeStyle = color;
-	ctx.moveTo(startPos.x, startPos.y);
-	ctx.lineTo(endPos.x, endPos.y);
-	ctx.lineWidth = 4;
-	ctx.stroke();
-}
 
 function drawText(ctx: CanvasRenderingContext2D, pos: Vector2, fontFamily: string, fontSize: number, text: string, color: string) {
 	const font = fontSize.toString() + "px " + fontFamily;
