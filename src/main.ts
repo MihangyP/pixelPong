@@ -1,4 +1,3 @@
-import type {Vector2} from './shapes.js';
 import {drawRectangle, drawCircle, drawLine, drawText, drawTextCenterX, checkCollisionRecCircle} from './shapes.js';
 
 let windowWidth: number;
@@ -59,11 +58,6 @@ let playerMoveLeft = false;
 const playerVelocity = 300;
 let paused = false;
 
-//interface Vector2 {
-//x: number,
-//y: number,
-//}
-
 let ballPos = {
 	x: windowWidth / 2,
 	y: windowHeight / 2
@@ -107,12 +101,22 @@ function drawGame(ctx: CanvasRenderingContext2D) {
 		drawRectangle(ctx, playerPos, paddleWidth, paddleHeight, playerPaddleColor);
 		drawRectangle(ctx, botPos, paddleWidth, paddleHeight, botPaddleColor);
 
-		// Pause
-		if (paused) {
-			drawText(ctx, {
-				x: windowWidth / 2, y: windowHeight / 2
-			}, "Orbitron", 42, "Pause", "#E0FBFC");
+		for (let i = 0; i < particles.length; ++i) {
+			for (let j = 0; j < PARTICLE_QUANTITY; ++j) {
+				if (particles && particles[i]) {
+					const p = particles[i]?.[j];
+					if (p)
+						drawRectangle(ctx, {x: p.x, y: p.y}, p.width, p.height, p.color);
+				}
+			}
 		}
+	}
+
+	// Pause
+	if (paused) {
+		drawText(ctx, {
+			x: windowWidth / 2, y: windowHeight / 2
+		}, "Orbitron", 42, "Pause", "#E0FBFC");
 	}
 }
 
@@ -155,12 +159,35 @@ function drawAuth(ctx: CanvasRenderingContext2D) {
 	drawTextCenterX(ctx, {x: windowWidth / 2, y: windowHeight / 2}, "Orbitron", 69, "Multiplayer Screen", myWhite);
 }
 
+const PARTICLE_QUANTITY = 10;
+const PARTICLE_SIZE = 10;
+const PARTICLE_COLOR = "red";
+
+interface Rect {
+	x: number,
+	y: number,
+	width: number,
+	height: number,
+	color: string,
+};
+
+let particles: Rect[][] = [];
+
+function generateParticle(): Rect[] {
+	let array: Rect[] = [];
+	for (let i = 0; i < PARTICLE_QUANTITY; ++i) {
+		const x = 0;
+		const y = 0;
+		array.push({x, y, width: PARTICLE_SIZE, height: PARTICLE_SIZE, color: PARTICLE_COLOR});
+	}
+	return (array);
+}
+
 function playGame(ctx: CanvasRenderingContext2D, dt: number) {
 	if (!paused) {
-		if (ballPos.x + ballRadius >= windowWidth) {
-			ballVelocity.x *= -1;
-		}
-		if (ballPos.x - ballRadius <= 0) {
+		if (ballPos.x + ballRadius >= windowWidth || ballPos.x - ballRadius <= 0) {
+			const arrayOfParticles = generateParticle();
+			particles.push(arrayOfParticles);
 			ballVelocity.x *= -1;
 		}
 		if (ballPos.y + ballRadius >= windowHeight || ballPos.y - ballRadius <= 0) {
