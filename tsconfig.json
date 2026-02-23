@@ -1,0 +1,36 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+		"noEmitOnError" : true,
+		// File Layout
+		"rootDir": "./src",
+		"outDir": "./dist",
+
+		// Environment Settings
+		// See also https://aka.ms/tsconfig/module
+		"module": "esnext",
+		"target": "esnext",
+		// TODO: try to understand these two flags
+		"lib": ["dom", "esnext"],
+		"esModuleInterop": true,
+
+		// Stricter Typechecking Options
+		// TODO: and also these two
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+
+		// Recommended Options
+		"strict": true,
+		"jsx": "react-jsx",
+		// TODO: and all these flags
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"noUncheckedSideEffectImports": true,
+		"moduleDetection": "force",
+		"skipLibCheck": true
+  },
+	"files": [
+		"./src/main.ts",
+		"./src/shapes.ts"
+	]
+}
