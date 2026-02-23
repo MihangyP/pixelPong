@@ -5,4 +5,5 @@ This is a simple pong game written in Typescript.
 More cool features comming soon ;)
 
 ## TODO
-- [ ] Add paticles effect when the ball touch a line or a paddle
+- [x] Add paticles effect when the ball touch a line or a paddle
+- [ ] Multiplayer
