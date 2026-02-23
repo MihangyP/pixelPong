@@ -60,8 +60,8 @@ const playerVelocity = 300;
 let paused = false;
 
 const PARTICLE_QUANTITY = 25;
-const PARTICLE_SIZE = 3;
-const PARTICLE_LIFE = 1.8; // in second
+const PARTICLE_SIZE = 4;
+const PARTICLE_LIFE = 1.5; // in second
 const PARTICLE_MAX_SPEED = 40;
 const FADE_FRACTION = 0.4;
 
@@ -145,7 +145,6 @@ function drawParticles(ctx: CanvasRenderingContext2D): void {
 	}
 }
 
-// TODO: FADEOUT
 function updateParticles(dt: number) {
 	for (let i = 0; i < particlesArray.length; ++i) {
 		const group = particlesArray[i];
